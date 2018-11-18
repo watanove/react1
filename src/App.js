@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 // class App extends Component {
 //   render() {
@@ -23,11 +23,16 @@ import React, { Component } from 'react';
 // }
 
 const App=()=>{
+  const x=[{name:"ban",age:"10"},{name:"che",agex:"20"}]
   return<div>
-    <Ban/>
-    <Ban/>
+    {x.map(function(xx){return <Ban key={xx.name+xx.age} name={xx.name} age={xx.age} />})}
   </div>
 }
 
-const Ban=()=><div>IamChampion</div>
+
+const Ban=(props)=><div>{props.name}IamChampion and aged{props.age}</div>
+
+Ban.defaultProps={
+  age:100
+}
 export default App;
