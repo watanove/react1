@@ -1,16 +1,6 @@
 import React,{Component} from 'react';
 
 const App=()=>(<Counter/>)
-let o={
-x:function(){
-  console.log('hello')
-}
-}
-
-var o2={
-  x(){},
-  y:function(){}
-}
 
 
 class Counter extends Component{
@@ -19,13 +9,20 @@ class Counter extends Component{
     console.log(this.state)
     this.state={count:0}
   }
-  handleButton=()=>{
-    console.log(this.state)
+  handleButton=(i)=>{
+    this.setState({count:this.state.count+this.v})
+  }
+  x=()=>{
+    this.state.count=100
   }
   render(){
     console.log(this.state)
     return (<React.Fragment><div>this.state.count={this.state.count}</div>
-      <button onClick={this.handleButton}>おしてー</button></React.Fragment>
+      <button onClick={this.handleButton} data-v={10}>おしてー</button>
+      <button onClick={this.handleButton} data-v={-10}>おしてー</button>
+      <button onClick={this.x}>押しても画面は変わりません。</button>
+      </React.Fragment>
+
     )
   }
 }
