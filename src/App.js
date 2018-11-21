@@ -10,7 +10,7 @@ class Counter extends Component{
     this.state={count:0}
   }
   handleButton=(i)=>{
-    this.setState({count:this.state.count+this.v})
+    this.setState({count:this.state.count+1})
   }
   x=()=>{
     this.state.count=100
