@@ -1,29 +1,27 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
+import {increment,decrement} from '../actions'
 
-const App=()=>(<Counter/>)
+class App extends Component{
+  handleX = () =>{
+    console.log("N?")
+    this.setState({value:this.state.value+1})
+  }
 
-
-class Counter extends Component{
-  constructor (props){
-    super(props)
-    console.log(this.state)
-    this.state={count:0}
-  }
-  handleButton=(i)=>{
-    this.setState({count:this.state.count+1})
-  }
-  x=()=>{
-    this.state.count=100
-  }
   render(){
-    console.log(this.state)
-    return (<React.Fragment><div>this.state.count={this.state.count}</div>
-      <button onClick={this.handleButton} data-v={10}>おしてー</button>
-      <button onClick={this.handleButton} data-v={-10}>おしてー</button>
-      <button onClick={this.x}>押しても画面は変わりません。</button>
+    console.log(this.props)
+    const props=this.props
+    return (<React.Fragment><div>this.state.value={props.value}</div>
+      <button onClick={props.increment}>おしてー</button>
+      <button onClick={props.decrement}>おしてー</button>
       </React.Fragment>
-
     )
   }
 }
-export default App;
+
+ const mapStateToProps=state=>({value:state.count.value})
+const mapDispacthToProps=dispatch=>({
+  increment:()=>dispatch(increment()),
+  decrement:()=>dispatch(decrement())
+})
+export default connect(mapStateToProps,mapDispacthToProps)(App)
